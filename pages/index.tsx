@@ -1,6 +1,6 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
 
 export default function Home() {
   return (
@@ -11,61 +11,43 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+      {/* 
+        Eat The Blocks (Youtube)
+        Hash Time Locked Contract
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
+        1. Bob picks a secret
+        2. Bob cryptograph the hash of the secret
+        3. Bob deploy a HTLC contract in Blockchain A
+          3.1 Token A locked: with Alice's address & the secret 
+        4. Bob sends Token A to the previous deployed HTLC contract
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+        The HTLC contract is coded to release Token A to Alice
+        but only if she knows the secret.
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+        1. Alice will deploy another HTLC contract in Blockchain B
+        2. Alice cryptograph the hash of the secret
+        3. Alice deploy a HTLC contract in Blockchain B
+          3.1 Token B locked: with Bob's address & the secret 
+        4. Alice sends Token B to the previous deployed HTLC contract
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+        The HTLC contract is coded to release Token B to Alice
+        but only if she knows the secret.
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+        5. Bob will withdraw Token B & will save the secret in the Blockchain B
+        wich will reveal it publicly.
+        6. Alice will read the value of the secret in Blockchain B & use it to withdraw
+        Token A from Blockhain A.
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+        Security Risks:
+        1. When the secret is revealed by Bob at Blockchain A, it will be 
+        secured to Alice due the address which was given as parameter.
+        2. If Bob never withdraw Token B & never reveal his secret
+        the Token A won't be locked forever. Function "refund" is 
+        responsible to return tokens after a certain amount of time.
+        3. What if Bob withdraw Token B just before the time to activate
+        the function "refund"? Make time shorter for Bob than for Alice.
+      */}
+      <main className={styles.main}></main>
     </div>
-  )
+  );
 }
